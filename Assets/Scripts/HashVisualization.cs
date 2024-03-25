@@ -8,6 +8,20 @@ using static Unity.Mathematics.math;
 
 public class HashVisualization : MonoBehaviour {
 
+    public enum Shape { Plane, Sphere, Torus}
+
+    static Shapes.ScheduleDelegate[] shapeJobs = {
+        Shapes.Job<Shapes.Plane>.ScheduleParallel,
+        Shapes.Job<Shapes.Sphere>.ScheduleParallel,
+        Shapes.Job<Shapes.Torus>.ScheduleParallel
+    };
+
+    [SerializeField]
+    Shape shape;
+
+    [SerializeField, Range(0.1f, 10f)]
+    float instanceScale = 2f;
+
     [BurstCompile(FloatPrecision.Standard, FloatMode.Fast, CompileSynchronously = true)]
     struct HashJob : IJobFor {
 
@@ -92,7 +106,7 @@ public class HashVisualization : MonoBehaviour {
         propertyBlock.SetBuffer(hashesId, hashesBuffer);
         propertyBlock.SetBuffer(positionsId, positionsBuffer);
         propertyBlock.SetBuffer(normalsId, normalsBuffer);
-        propertyBlock.SetVector(configId, new Vector4(resolution, 1f / resolution, displacement));
+        propertyBlock.SetVector(configId, new Vector4(resolution, instanceScale / resolution, displacement));
     }
 
     void OnDisable() {
@@ -120,7 +134,7 @@ public class HashVisualization : MonoBehaviour {
             isDirty = false;
             transform.hasChanged = false;
 
-            JobHandle handle = Shapes.Job.ScheduleParallel(
+            JobHandle handle = shapeJobs[(int)shape](
                 positions, normals, resolution, transform.localToWorldMatrix, default
             );
 
