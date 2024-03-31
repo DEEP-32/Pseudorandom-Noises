@@ -274,14 +274,14 @@ MonoBehaviour:
   material: {fileID: 2100000, guid: a5fccd1638949a640b52ba6619d1a855, type: 2}
   shape: 1
   instanceScale: 2
-  resolution: 512
-  displacement: 0
+  resolution: 256
+  displacement: 0.1
   noiseSettings:
     seed: 0
     frequency: 4
-    octaves: 1
+    octaves: 3
     lacunarity: 2
-    persistance: 1
+    persistance: 0.5
   domain:
     translation:
       x: 0
@@ -292,11 +292,12 @@ MonoBehaviour:
       y: 0
       z: 0
     scale:
-      x: 16
-      y: 16
-      z: 16
+      x: 1
+      y: 1
+      z: 1
   type: 0
   dimensions: 3
+  tiling: 0
 --- !u!4 &711330583
 Transform:
   m_ObjectHideFlags: 0
