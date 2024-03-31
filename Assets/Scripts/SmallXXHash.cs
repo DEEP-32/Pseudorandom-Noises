@@ -79,6 +79,9 @@ public readonly struct SmallXXHash4 {
     static uint4 RotateLeft(uint4 data, int steps) =>
         (data << steps) | (data >> 32 - steps);
 
+    public static SmallXXHash4 operator +(SmallXXHash4 h, int v) =>
+        h.accumulator + (uint)v;
+
     public SmallXXHash4 Eat(int4 data) =>
         RotateLeft(accumulator + (uint4)data * primeC, 17) * primeD;
 

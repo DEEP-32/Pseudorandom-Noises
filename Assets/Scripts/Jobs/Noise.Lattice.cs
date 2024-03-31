@@ -29,11 +29,11 @@ public static partial class Noise {
             LatticeSpan4 x = GetLatticeSpan4(positions.c0);
 
             var g = default(G);
-            return lerp(
+            return g.EvaluateAfterInterpolation(lerp(
                 g.Evaluate(hash.Eat(x.p0),x.g0), 
                 g.Evaluate(hash.Eat(x.p1),x.g1), 
                 x.t
-            );
+            ));
         }
     }
 
@@ -45,7 +45,7 @@ public static partial class Noise {
             SmallXXHash4 h0 = hash.Eat(x.p0), h1 = hash.Eat(x.p1);
 
             var g = default(G);
-            return lerp(
+            return g.EvaluateAfterInterpolation(lerp(
                 lerp(
                     g.Evaluate(h0.Eat(z.p0),x.g0,x.g1), 
                     g.Evaluate(h0.Eat(z.p1),x.g0,x.g1), 
@@ -57,7 +57,7 @@ public static partial class Noise {
                     z.t
                 ),
                 x.t
-            );
+            ));
         }
     }
 
@@ -75,7 +75,7 @@ public static partial class Noise {
 
 
             var g = default(G);
-            return lerp(
+            return g.EvaluateAfterInterpolation(lerp(
                 lerp(
                     lerp(
                         g.Evaluate(h00.Eat(z.p0), x.g0, y.g0, z.g0),
@@ -103,7 +103,7 @@ public static partial class Noise {
                     y.t
                 ),
                 x.t
-            );
+            ));
         }
     }
 }

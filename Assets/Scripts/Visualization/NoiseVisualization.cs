@@ -10,7 +10,7 @@ public class NoiseVisualization : Visualization {
     static int noiseId = Shader.PropertyToID("_Noise");
 
     [SerializeField]
-    int seed = 0;
+    Settings noiseSettings = Settings.Default;
 
     [SerializeField]
     SpaceTRS domain = new SpaceTRS {
@@ -24,14 +24,25 @@ public class NoiseVisualization : Visualization {
             Job<Lattice3D<Perlin>>.ScheduleParallel
         },
         {
+            Job<Lattice1D<Turbulence<Perlin>>>.ScheduleParallel,
+            Job<Lattice2D<Turbulence<Perlin>>>.ScheduleParallel,
+            Job<Lattice3D<Turbulence<Perlin>>>.ScheduleParallel
+
+        },
+        {
             Job<Lattice1D<Value>>.ScheduleParallel,
             Job<Lattice2D<Value>>.ScheduleParallel,
             Job<Lattice3D<Value>>.ScheduleParallel
+        },
+        {
+            Job<Lattice1D<Turbulence<Value>>>.ScheduleParallel,
+            Job<Lattice2D<Turbulence<Value>>>.ScheduleParallel,
+            Job<Lattice3D<Turbulence<Value>>>.ScheduleParallel
         }
 
     };
 
-    public enum NoiseType { Perlin, Value }
+    public enum NoiseType { Perlin, PerlinTurbulence, Value , ValueTurbulence}
 
     [SerializeField]
     NoiseType type;
@@ -59,7 +70,7 @@ public class NoiseVisualization : Visualization {
 
 
         noiseJobs[(int)type , dimensions - 1](
-            positions,noise,seed,domain,resolution,handle
+            positions,noise,noiseSettings,domain,resolution,handle
         ).Complete();
         noiseBuffer.SetData(noise.Reinterpret<float>(4 * 4));
 
