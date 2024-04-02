@@ -272,14 +272,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   instanceMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   material: {fileID: 2100000, guid: a5fccd1638949a640b52ba6619d1a855, type: 2}
-  shape: 1
+  shape: 0
   instanceScale: 2
-  resolution: 256
-  displacement: 0.1
+  resolution: 512
+  displacement: 0.5
   noiseSettings:
     seed: 0
-    frequency: 4
-    octaves: 3
+    frequency: 6
+    octaves: 1
     lacunarity: 2
     persistance: 0.5
   domain:
@@ -295,8 +295,8 @@ MonoBehaviour:
       x: 1
       y: 1
       z: 1
-  type: 0
-  dimensions: 3
+  type: 4
+  dimensions: 2
   tiling: 0
 --- !u!4 &711330583
 Transform:
