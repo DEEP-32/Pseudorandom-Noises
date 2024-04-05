@@ -278,7 +278,7 @@ MonoBehaviour:
   displacement: 0.5
   noiseSettings:
     seed: 0
-    frequency: 6
+    frequency: 4
     octaves: 1
     lacunarity: 2
     persistance: 0.5
@@ -295,7 +295,7 @@ MonoBehaviour:
       x: 1
       y: 1
       z: 1
-  type: 4
+  type: 7
   dimensions: 2
   tiling: 0
 --- !u!4 &711330583
