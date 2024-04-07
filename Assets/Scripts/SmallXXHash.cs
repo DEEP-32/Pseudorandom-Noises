@@ -94,6 +94,8 @@ public readonly struct SmallXXHash4 {
         avalanche ^= avalanche >> 16;
         return avalanche;
     }
+    public static SmallXXHash4 Select(SmallXXHash4 a, SmallXXHash4 b, bool4 c) =>
+        math.select(a.accumulator, b.accumulator, c);
     public uint4 GetBits(int count, int shift) =>
         ((uint4)this >> shift) & (uint)((1 << count) - 1);
 
