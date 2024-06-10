@@ -101,4 +101,5 @@ public readonly struct SmallXXHash4 {
 
     public float4 GetBitsAsFloats01(int count, int shift) =>
         (float4)GetBits(count, shift) * (1f / ((1 << count) - 1));
+        
 }
